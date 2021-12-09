@@ -117,6 +117,10 @@ void AReverseCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	// Bind reversing time event
+	PlayerInputComponent->BindAction("ReverseTime", IE_Pressed, this, &AReverseCharacter::StartReversingTime);
+	PlayerInputComponent->BindAction("ReverseTime", IE_Released, this, &AReverseCharacter::StopReversingTime);
+
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AReverseCharacter::OnFire);
 
@@ -214,6 +218,17 @@ void AReverseCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVec
 		return;
 	}
 	TouchItem.bIsPressed = false;
+}
+
+void AReverseCharacter::StartReversingTime()
+{
+	ReverseTimeEvent.Broadcast(true);
+}
+
+void AReverseCharacter::StopReversingTime()
+{
+	ReverseTimeEvent.Broadcast(false);
+
 }
 
 //Commenting this section out to be consistent with FPS BP template.
