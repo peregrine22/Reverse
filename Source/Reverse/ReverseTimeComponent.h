@@ -23,7 +23,7 @@ public:
 	// time doesn't reverse. keeping track of the time as we going backwards
 	float RunningTime; 
 
-	// reversed time. count of the frame data delta times
+	// reversed time. count of the frame data delta times. sum of all deltasa
 	float ReverseRunningTime; 
 
 	//total amount of time recorded in FrameData;
